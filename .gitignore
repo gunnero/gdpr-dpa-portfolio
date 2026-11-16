@@ -1,0 +1,10 @@
+# Public showcase: only explicitly reviewed portfolio files may be tracked.
+/*
+!/.gitignore
+!/README.md
+!/screenshots/
+/screenshots/*
+!/screenshots/01-records-list.png
+!/screenshots/02-dpa-form.png
+!/screenshots/03-user-roles.png
+!/screenshots/04-generated-pdf.png
