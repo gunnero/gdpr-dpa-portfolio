@@ -1,10 +1,37 @@
-# GDPR & DPA Management — Portfolio Showcase
+# GDPR & DPA Management — Portfolio & Code Samples
 
 A PHP and MySQL web application for managing data-processing records, reviewing data processor agreements (DPAs), controlling staff access, and generating structured PDF documents.
 
 This repository presents the application through screenshots captured from an isolated local demo. All company records shown are fictional. Contact details, registration numbers, internal notes and private links were left blank.
 
-**This is a visual portfolio showcase, not an application source release or a hosted demo.**
+**This portfolio includes selected, runnable code samples. It is not the full application or a hosted demo.**
+
+## Review the code
+
+These small examples make implementation decisions inspectable without publishing the private application.
+
+| Sample | What it demonstrates | Provenance |
+| --- | --- | --- |
+| [DocumentFilename.php](samples/DocumentFilename.php) | Date validation, Danish transliteration, duplicate-name handling, bounded filename components | Extracted function; namespace and function name changed |
+| [FormOptions.php](samples/FormOptions.php) | Reusable checkbox rendering, escaped labels and attributes, category prefixes and hierarchical options | Extracted functions; translation hook omitted and escaping helper made local |
+| [RecordStatus.php](samples/RecordStatus.php) | Prepared statements, atomic record/document changes, audit events and rollback | Standalone adaptation with generic tables, simplified audit data and explicit missing-record handling |
+| [tests/run.php](tests/run.php) | Edge cases, HTML escaping, related-record updates and rollback after an injected database failure | New tests using fictional inputs and an in-memory database |
+
+### Run the samples
+
+Requirements: PHP 8.0 or newer with `iconv`, `PDO` and `pdo_sqlite` enabled. No Composer install, database server or credentials are needed.
+
+```sh
+php tests/run.php
+```
+
+The tests do not load application configuration, connect to production, send email or write a database file. They exit with an error if a check fails or SQLite support is missing.
+
+### Scope of the excerpts
+
+The filename and form examples preserve the extracted logic, with the integration changes listed above. The transaction example preserves the workflow pattern but is deliberately adapted to a tiny, generic schema. Its SQLite tests demonstrate atomicity; they are not a replacement for the application's MySQL integration tests.
+
+These are implementation samples, not a ready-to-deploy service. The transaction caller is responsible for authentication, authorization and CSRF validation, and must not have an existing transaction. Rendering callbacks must come from trusted application code. The complete access-control implementation and proprietary business rules are not included.
 
 ## Application walkthrough
 
@@ -57,10 +84,10 @@ The application's existing PDF generator turns a fictional processing record int
 - Each PNG is 1440 × 1000 pixels and was visually inspected before inclusion.
 - The demonstration used a separate local database with fictional records.
 - No production data was accessed or modified for the capture.
-- Application source, database exports, credentials, environment files, internal documentation, deployment details and original repository history are excluded.
+- Only the reviewed code samples listed above are published. The complete application, database exports, credentials, environment files, internal documentation, deployment details and original repository history are excluded.
 
 ## Repository contents
 
-This repository contains this overview, four demo screenshots and a restrictive ignore file. There is no installation step, live login or production endpoint.
+This repository contains this overview, three PHP samples, a standalone test runner, four demo screenshots and a restrictive ignore file. There is no live login or production endpoint.
 
 Application source and third-party branding are not offered under an open-source license by this showcase.

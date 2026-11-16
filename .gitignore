@@ -8,3 +8,11 @@
 !/screenshots/02-dpa-form.png
 !/screenshots/03-user-roles.png
 !/screenshots/04-generated-pdf.png
+!/samples/
+/samples/*
+!/samples/DocumentFilename.php
+!/samples/FormOptions.php
+!/samples/RecordStatus.php
+!/tests/
+/tests/*
+!/tests/run.php
